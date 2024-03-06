@@ -1,9 +1,6 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List" %>
 <%@ page import="com.example.auction_system.model.Lot" %>
-<%@ page import="com.example.auction_system.model.User" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="com.example.auction_system.service.LotService" %>
+<%@ page import="java.util.List" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!doctype html>
 <html lang="en">
@@ -16,80 +13,24 @@
     <link rel="stylesheet" type="text/css" href="resources/css/styles.css">
 </head>
 <body>
-
-<%
-    User owner1 = new User("vasylyeev", "password");
-    User owner2 = new User("kuzmenko", "password");
-
-    List<Lot> lots = Arrays.asList()
-%>
-
 <div class="container">
     <div class="title">
         <h1 class="text-center mt-5">Active Lots</h1>
     </div>
 
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+        <% for (Lot lot : (List<Lot>) request.getAttribute("activeLots")) { %>
         <div class="col">
             <div class="card m-4" style="width: 18rem;">
                 <div class="card-body">
-                    <h2>Lot 1</h2>
-                    <p>Starting Price: $100</p>
-                    <p>Owner: Denys Vasyliev</p>
-                    <p><a href="lot-details">View Details</a></p>
+                    <h2><%= lot.getName() %></h2>
+                    <p>Starting Price: $<%= lot.getStartingPrice() %></p>
+                    <p>Owner: <%= lot.getOwner().getUsername() %></p>
+                    <p><a href="lot-details?lotId=<%= lot.getId() %>">View Details</a></p>
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="card m-4" style="width: 18rem;">
-                <div class="card-body">
-                    <h2>Lot 2</h2>
-                    <p>Starting Price: $50</p>
-                    <p>Owner: Oleksandr Kuzmenko</p>
-                    <p><a href="lot-details?lotId=1">View Details</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card m-4" style="width: 18rem;">
-                <div class="card-body">
-                    <h2>Lot 3</h2>
-                    <p>Starting Price: $200</p>
-                    <p>Owner: Evhen Semenyak</p>
-                    <p><a href="lot-details?lotId=1">View Details</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card m-4" style="width: 18rem;">
-                <div class="card-body">
-                    <h2>Lot 4</h2>
-                    <p>Starting Price: $150</p>
-                    <p>Owner: Sofia Trokhymchuk</p>
-                    <p><a href="lot-details?lotId=1">View Details</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card m-4" style="width: 18rem;">
-                <div class="card-body">
-                    <h2>Lot 5</h2>
-                    <p>Starting Price: $90</p>
-                    <p>Owner: Denys Vasyliev</p>
-                    <p><a href="lot-details?lotId=1">View Details</a></p>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="card m-4" style="width: 18rem;">
-                <div class="card-body">
-                    <h2>Lot 6</h2>
-                    <p>Starting Price: $20</p>
-                    <p>Owner: Denys Vasyliev</p>
-                    <p><a href="lot-details?lotId=1">View Details</a></p>
-                </div>
-            </div>
-        </div>
+        <% } %>
     </div>
 </div>
 
