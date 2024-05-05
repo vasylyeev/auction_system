@@ -24,7 +24,6 @@ public class LotDetailsController extends HttpServlet {
         request.setAttribute("lot", lot);
         request.setAttribute("offers", offers);
 
-        // Forward to the lotDetails.jsp view
         request.getRequestDispatcher("/WEB-INF/views/lot-details.jsp").forward(request, response);
     }
 }

@@ -11,8 +11,7 @@ import java.util.List;
 
 public class OfferService {
 
-    private static final String PERSISTENCE_UNIT_NAME = "yourPersistenceUnitName";
-    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("default");
 
     public static List<Offer> getOffersForLot(Long lotId) {
         EntityManager em = EMF.createEntityManager();

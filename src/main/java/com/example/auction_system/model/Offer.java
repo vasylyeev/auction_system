@@ -37,4 +37,20 @@ public class Offer {
     public void setBidder(User bidder) {
         this.bidder = bidder;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public double getAmount() {
+        return amount;
+    }
+
+    public Lot getLot() {
+        return lot;
+    }
+
+    public User getBidder() {
+        return bidder;
+    }
 }

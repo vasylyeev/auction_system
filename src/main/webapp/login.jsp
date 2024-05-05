@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!doctype html>
 <html lang="en">
 <head>
@@ -13,18 +12,28 @@
     <div class="title">
         <h1 class="text-center mt-5">Login</h1>
     </div>
-    <form class="mx-auto" style="display: flex; flex-direction: column; justify-content: center; width: 300px;">
+    <form class="mx-auto" action="login" method="post" style="display: flex; flex-direction: column; justify-content: center; width: 300px;">
         <div class="form-group mt-2 ">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            <label for="username_input">Username</label>
+            <input type="text" class="form-control" id="username_input" name="username" aria-describedby="emailHelp" placeholder="Enter username">
         </div>
         <div class="form-group mt-2 ">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            <label for="password_input">Password</label>
+            <input type="password" class="form-control" id="password_input" name="password" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-primary mt-2 ">Submit</button>
-        <a href="signup.jsp" class="btn btn-danger mt-2 ">Don't have account? Sing up.</a>
+        <a href="signup.jsp" class="btn btn-danger mt-2 ">Don't have account? Sign up.</a>
     </form>
+
+    <%
+        String error = request.getParameter("error");
+        if (error != null && error.equals("1")) {
+    %>
+    <div class="alert alert-danger mt-3" role="alert">
+        Invalid username or password. Please try again.
+    </div>
+    <% } %>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

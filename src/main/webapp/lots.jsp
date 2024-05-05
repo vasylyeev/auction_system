@@ -24,8 +24,8 @@
             <div class="card m-4" style="width: 18rem;">
                 <div class="card-body">
                     <h2><%= lot.getName() %></h2>
-                    <p>Starting Price: $<%= lot.getStartingPrice() %></p>
-                    <p>Owner: <%= lot.getOwner().getUsername() %></p>
+                    <p>Starting Price: $<%= Math.round(lot.getStartingPrice()) %></p>
+                    <p>Owner: <%=  lot.getOwner().getUsername() %></p>
                     <p><a href="lot-details?lotId=<%= lot.getId() %>">View Details</a></p>
                 </div>
             </div>

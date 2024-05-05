@@ -4,30 +4,31 @@ import com.example.auction_system.model.User;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 
 public class UserService {
+    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory("default");
 
-    private static final String PERSISTENCE_UNIT_NAME = "yourPersistenceUnitName";
-    private static final EntityManagerFactory EMF = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-
-    public static User getUserById(Long userId) {
+    private static List<User> getAllUsers() {
         EntityManager em = EMF.createEntityManager();
         try {
-            return em.find(User.class, userId);
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u", User.class);
+            return query.getResultList();
         } finally {
             em.close();
         }
     }
 
-    public static List<User> getAllUsers() {
+    public static void createUser(User user) {
         EntityManager em = EMF.createEntityManager();
         try {
-            return em.createQuery("SELECT u FROM User u", User.class).getResultList();
+            em.getTransaction().begin();
+            em.persist(user);
+            em.getTransaction().commit();
         } finally {
             em.close();
         }
     }
-
 }
